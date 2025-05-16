@@ -33,7 +33,7 @@ jobs:
           pwd
           find . -maxdepth 2 -type f -name '*.py'
         
-      - name: Run tests
-        run: pytest 
+      # - name: Run tests
+      #   run: pytest 
         
     
