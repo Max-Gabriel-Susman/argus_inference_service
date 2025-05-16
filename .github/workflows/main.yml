@@ -3,22 +3,18 @@ name: ci
 on:
   push:
     branches: [ main ]
-  pull_request:   # run tests for PRs too
+  pull_request:   
     branches: [ "**" ]
 
 jobs:
-  # ────────────────────────────────────
-  # 1) Unit- & integration tests
-  # ────────────────────────────────────
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10"]   # add/remove versions as needed
+        python-version: ["3.10"]  
     steps:
       - uses: actions/checkout@v4
 
-      # ⚡ optional – cache venv to speed up subsequent runs
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
@@ -32,6 +28,11 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt   # pytest, coverage, etc.
 
+      - name: Show repo tree
+        run: |
+          pwd
+          find . -maxdepth 2 -type f -name '*.py'
+        
       - name: Run tests
         run: pytest 
         
