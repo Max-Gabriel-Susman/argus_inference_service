@@ -47,5 +47,4 @@ COPY . .
 # Expose the port that the application listens on.
 EXPOSE 5001
 
-# Run the application.
 CMD python3 -m uvicorn app:app --host=0.0.0.0 --port=5001
