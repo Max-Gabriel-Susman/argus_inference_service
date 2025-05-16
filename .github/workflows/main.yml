@@ -23,9 +23,6 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt   # coverage, httpx, etc.
 
-      - name: Run unit tests with coverage
-        run: |
-          # Run the suite and collect coverage
-          coverage run -m unittest discover -s tests -p 'test_*.py'
-          # Create coverage.xml so other steps/services can parse it
-          coverage xml
+      - name: Run unit tests (unittest)
+        run: python -m unittest discover -s tests -p 'test_*.py'
+        
