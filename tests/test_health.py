@@ -1,9 +1,11 @@
 # tests/test_health.py
+import pytest
 from httpx import AsyncClient
-from fastapi_project.main import create_app   # adjust import to your actual factory
+from app import app          # ← your real module
 
-async def test_healthcheck():
-    app = create_app()
+@pytest.mark.asyncio
+async def test_root():
     async with AsyncClient(app=app, base_url="http://test") as client:
-        resp = await client.get("/health")
+        resp = await client.get("/")
     assert resp.status_code == 200
+    assert resp.json() == "Hello, Docker!"
