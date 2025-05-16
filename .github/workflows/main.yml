@@ -33,6 +33,6 @@ jobs:
           pip install -r requirements-dev.txt   # pytest, coverage, etc.
 
       - name: Run tests
-        run: pytest -q --cov=app --cov-report=xml
+        run: pytest 
         
     
